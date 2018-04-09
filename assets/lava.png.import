@@ -7,10 +7,10 @@ path="res://.import/lava.png-7a5111e57817f5e0bce4c46b58caa642.stex"
 [deps]
 
 source_file="res://assets/lava.png"
-source_md5="09789228cf7b66cdb80931b089749f32"
+source_md5="efde11a650a56f892369fc196994ae1c"
 
 dest_files=[ "res://.import/lava.png-7a5111e57817f5e0bce4c46b58caa642.stex" ]
-dest_md5="898ca83425050dba5d1249e357409528"
+dest_md5="c5067af2ef0c214779184a72037bac21"
 
 [params]
 

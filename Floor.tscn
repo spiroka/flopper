@@ -11,8 +11,7 @@ _sections_unfolded = [ "Resource" ]
 
 [node name="Floor" type="StaticBody2D"]
 
-position = Vector2( 302.201, 575.804 )
-scale = Vector2( 9.91547, 1 )
+position = Vector2( 286.543, 575.804 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -21,17 +20,18 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
-position = Vector2( 0.152981, 3.01465 )
-scale = Vector2( 2.40304, 1 )
+position = Vector2( -1.15865, 3.01465 )
+scale = Vector2( 2.32211, 1 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="CollisionShape2D" index="0"]
 
-position = Vector2( -0.0810859, 0 )
-scale = Vector2( 0.549885, 1 )
+position = Vector2( 0.0120718, 0 )
+scale = Vector2( 0.996609, 1 )
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 26, 18 )

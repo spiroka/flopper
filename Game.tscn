@@ -17,14 +17,14 @@ _sections_unfolded = [ "Z Index" ]
 
 [node name="Lava" parent="." index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 0, 1024 )
+position = Vector2( -0.0908203, 895.274 )
 z_index = 2
 
-[node name="Level1" parent="." index="2" instance=ExtResource( 4 )]
+[node name="Level1" type="Node2D" parent="." index="2" instance=ExtResource( 4 )]
 
 [node name="Player" parent="." index="3" instance=ExtResource( 5 )]
 
-position = Vector2( 283.304, 526.28 )
+position = Vector2( 325.147, 459.332 )
 z_index = 1
 _sections_unfolded = [ "Z Index" ]
 

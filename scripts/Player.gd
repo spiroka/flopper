@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-enum STATES {IDLE, JUMPING, CHARGING_JUMP, LAUNCHING, KITING, DASHING, ROLLING}
+enum STATES {IDLE, JUMPING, CHARGING_JUMP, LAUNCHING, KITING, DASHING, WALKING}
 enum ACTIONS {LEFT_PRESSED, RIGHT_PRESSED, BOTH_PRESSED, LEFT_DOUBLE_TAPPED, RIGHT_DOUBLE_TAPPED, LEFT_HELD, RIGHT_HELD}
 
 const Floor = preload('Floor.gd')
@@ -79,7 +79,7 @@ func _resolve_state(action, body_state):
 				_state = CHARGING_JUMP
 			elif action == LEFT_DOUBLE_TAPPED or action == RIGHT_DOUBLE_TAPPED:
 				var direction = -1 if action == LEFT_DOUBLE_TAPPED else 1
-				set_axis_velocity(Vector2(direction * 400, 0))
+				set_axis_velocity(Vector2(direction * 600, 0))
 				_state = DASHING
 			elif action == LEFT_PRESSED or action == RIGHT_PRESSED:
 				var direction = -1 if action == LEFT_PRESSED else 1
@@ -87,7 +87,7 @@ func _resolve_state(action, body_state):
 				_state = LAUNCHING
 				on_floor = false
 			elif action == LEFT_HELD or action == RIGHT_HELD:
-				_state = ROLLING
+				_state = WALKING
 		JUMPING:
 			if on_floor:
 				_state = IDLE
@@ -97,7 +97,7 @@ func _resolve_state(action, body_state):
 				_state = KITING
 			elif (action == LEFT_DOUBLE_TAPPED or action == RIGHT_DOUBLE_TAPPED) and not _already_air_dashed:
 				var direction = -1 if action == LEFT_DOUBLE_TAPPED else 1
-				set_axis_velocity(Vector2(direction * 200, 0))
+				set_axis_velocity(Vector2(direction * 400, -100))
 				_already_air_dashed = true
 		CHARGING_JUMP:
 			if not _both_pressed() and on_floor:
@@ -119,7 +119,7 @@ func _resolve_state(action, body_state):
 			if _dash_time >= DASH_DURATION and not Input.is_action_pressed(_button_pressed_last):
 				_state = IDLE
 				_dash_time = 0
-		ROLLING:
+		WALKING:
 			if action == LEFT_HELD or action == RIGHT_HELD:
 				var direction = -1 if action == LEFT_HELD else 1
 				friction = 0
@@ -146,7 +146,6 @@ func _both_pressed():
 func _is_on_floor(s):
 	for i in range(s.get_contact_count()):
 		var obj = s.get_contact_collider_object(i)
-		if obj is Floor:
-			if s.get_contact_local_normal(i).y == -1:
-				return true
+		if s.get_contact_local_normal(i).y == -1:
+			return true
 	return false

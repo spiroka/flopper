@@ -1,4 +1,4 @@
 extends Sprite
 
 func _process(delta):
-	position.y -= delta * 20 
+	position.y -= delta * 20

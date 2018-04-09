@@ -13,4 +13,5 @@ func _ready():
 
 func _process(delta):
 	if _player.global_position.y >= _lava.global_position.y:
+		_player.sleeping = true
 		emit_signal('over')
