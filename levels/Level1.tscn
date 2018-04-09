@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/bg.png" type="Texture" id=1]
+[ext_resource path="res://Floor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Wall.tscn" type="PackedScene" id=3]
+
+[node name="Level1" type="Node"]
+
+[node name="Background" type="Sprite" parent="." index="0"]
+
+position = Vector2( 300, 512 )
+rotation = 1.5708
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Floors" type="Node2D" parent="." index="1"]
+
+editor/display_folded = true
+
+[node name="Floor" parent="Floors" index="0" instance=ExtResource( 2 )]
+
+[node name="Floor2" parent="Floors" index="1" instance=ExtResource( 2 )]
+
+position = Vector2( 99.8414, 509.648 )
+scale = Vector2( 3.4374, 0.900561 )
+
+[node name="Floor3" parent="Floors" index="2" instance=ExtResource( 2 )]
+
+position = Vector2( 428.402, 459.739 )
+scale = Vector2( 5.41701, 1 )
+
+[node name="Wall" parent="." index="2" instance=ExtResource( 3 )]
+
+position = Vector2( -11.0505, 5.05054 )
+
+[node name="Wall2" parent="." index="3" instance=ExtResource( 3 )]
+
+position = Vector2( 609.895, -0.858032 )
+
+

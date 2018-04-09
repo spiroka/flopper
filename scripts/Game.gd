@@ -5,6 +5,7 @@ signal over
 
 onready var _player = get_node('Player')
 onready var _lava = get_node('Lava')
+var _current_scene = null
 
 func _ready():
 	emit_signal('started')

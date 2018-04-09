@@ -1,74 +1,32 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/Game.gd" type="Script" id=1]
-[ext_resource path="res://assets/bg.png" type="Texture" id=2]
-[ext_resource path="res://Floor.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Wall.tscn" type="PackedScene" id=5]
-[ext_resource path="res://UI.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/lava.png" type="Texture" id=7]
-[ext_resource path="res://scripts/Lava.gd" type="Script" id=8]
-
-[sub_resource type="GDScript" id=2]
-
-script/source = "extends Node2D
-
-func _process(delta):
-#	position.y += delta * 20
-	pass
-"
+[ext_resource path="res://UI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Lava.tscn" type="PackedScene" id=3]
+[ext_resource path="res://levels/Level1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=5]
 
 [node name="Game" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
-[node name="Background" type="Sprite" parent="." index="0"]
-
-position = Vector2( 300, 512 )
-rotation = 1.5708
-texture = ExtResource( 2 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Floors" type="Node2D" parent="." index="1"]
+[node name="UI" parent="." index="0" instance=ExtResource( 2 )]
 
 editor/display_folded = true
-script = SubResource( 2 )
+_sections_unfolded = [ "Z Index" ]
 
-[node name="Floor" parent="Floors" index="0" instance=ExtResource( 3 )]
-
-[node name="Floor2" parent="Floors" index="1" instance=ExtResource( 3 )]
-
-position = Vector2( 99.8414, 509.648 )
-scale = Vector2( 3.4374, 0.900561 )
-
-[node name="Floor3" parent="Floors" index="2" instance=ExtResource( 3 )]
-
-position = Vector2( 428.402, 459.739 )
-scale = Vector2( 5.41701, 1 )
-
-[node name="Player" parent="." index="2" instance=ExtResource( 4 )]
-
-position = Vector2( 310.512, 556.208 )
-
-[node name="Wall" parent="." index="3" instance=ExtResource( 5 )]
-
-position = Vector2( -11.0505, 5.05054 )
-
-[node name="Wall2" parent="." index="4" instance=ExtResource( 5 )]
-
-position = Vector2( 609.895, -0.858032 )
-
-[node name="UI" parent="." index="5" instance=ExtResource( 6 )]
-
-[node name="Lava" type="Sprite" parent="." index="6"]
+[node name="Lava" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 0, 1024 )
-texture = ExtResource( 7 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 0, 0, 600, 1024 )
-script = ExtResource( 8 )
-_sections_unfolded = [ "Transform" ]
+z_index = 2
+
+[node name="Level1" parent="." index="2" instance=ExtResource( 4 )]
+
+[node name="Player" parent="." index="3" instance=ExtResource( 5 )]
+
+position = Vector2( 283.304, 526.28 )
+z_index = 1
+_sections_unfolded = [ "Z Index" ]
 
 [connection signal="over" from="." to="UI" method="_on_Game_over"]
 
