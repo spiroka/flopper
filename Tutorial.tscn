@@ -8,7 +8,7 @@
 [ext_resource path="res://Theme.theme" type="Theme" id=6]
 [ext_resource path="res://assets/Roboto-Medium.ttf" type="DynamicFontData" id=7]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 
 size = 15
 use_mipmaps = false
@@ -16,9 +16,9 @@ use_filter = false
 font_data = ExtResource( 7 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="Theme" id=3]
+[sub_resource type="Theme" id=2]
 
-default_font = SubResource( 2 )
+default_font = SubResource( 1 )
 Label/colors/font_color = Color( 0.32549, 0.360784, 0.407843, 1 )
 Label/colors/font_color_shadow = Color( 0, 0, 0, 0 )
 Label/constants/line_spacing = 3
@@ -123,12 +123,29 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-theme = SubResource( 3 )
+theme = SubResource( 2 )
 align = 1
 valign = 1
 autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="Collision" type="Node" parent="." index="6"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Collision" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collision/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( 1.11818, 607.604, 600.851, 608.267, 601.515, 636.131, 0.454758, 636.131 )
 
 

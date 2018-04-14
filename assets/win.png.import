@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/floor_end.png-7bb7fcadc023765bfc5a2b3f3cd72adf.stex"
+path="res://.import/win.png-1b881fe6f26f4bf84d6d6adba4a91976.stex"
 
 [deps]
 
-source_file="res://assets/floor_end.png"
-source_md5="25b39151c32b2d25bcec782d3591add1"
+source_file="res://assets/win.png"
+source_md5="29607c6dae6fdf3844f4d429dcc40f31"
 
-dest_files=[ "res://.import/floor_end.png-7bb7fcadc023765bfc5a2b3f3cd72adf.stex" ]
-dest_md5="75c4488cdcb75a956712419d6d6745be"
+dest_files=[ "res://.import/win.png-1b881fe6f26f4bf84d6d6adba4a91976.stex" ]
+dest_md5="a5718d87ec65620f5f14ec1b762300c9"
 
 [params]
 
@@ -18,7 +18,7 @@ compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=1
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false

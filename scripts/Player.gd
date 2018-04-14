@@ -3,11 +3,13 @@ extends RigidBody2D
 enum STATES {IDLE, JUMPING, CHARGING_JUMP, LAUNCHING, KITING, DASHING, WALKING}
 enum ACTIONS {LEFT_PRESSED, RIGHT_PRESSED, BOTH_PRESSED, LEFT_DOUBLE_TAPPED, RIGHT_DOUBLE_TAPPED, LEFT_HELD, RIGHT_HELD}
 
-const Floor = preload('Floor.gd')
 const GRAVITY_DEFAULT = 10
 const GRAVITY_KITING = 1
 const DASH_DURATION = 0.2
 const DOUBLE_TAP_DELAY = 0.17
+
+onready var _start_pos = get_node('../StartPosition')
+onready var _animation_player = get_node('AnimationPlayer')
 
 var _state = IDLE
 var _button_pressed_last
@@ -17,8 +19,8 @@ var _dash_time = 0
 var _waiting_for_double_tap = false
 var _already_air_dashed = false
 
-func _ready():
-	gravity_scale = GRAVITY_DEFAULT
+func ready():
+	_animation_player.play('idle')
 
 
 func _integrate_forces(s):
@@ -85,6 +87,8 @@ func _resolve_state(action, body_state):
 				var direction = -1 if action == LEFT_PRESSED else 1
 				set_axis_velocity(Vector2(direction * 100, -400))
 				_state = LAUNCHING
+				_animation_player.play('launch')
+				_animation_player.queue('idle')
 				on_floor = false
 			elif action == LEFT_HELD or action == RIGHT_HELD:
 				_state = WALKING
@@ -95,6 +99,7 @@ func _resolve_state(action, body_state):
 			elif action == BOTH_PRESSED and body_state.linear_velocity.y >= 0:
 				gravity_scale = GRAVITY_KITING
 				_state = KITING
+				_animation_player.play('kite')
 			elif (action == LEFT_DOUBLE_TAPPED or action == RIGHT_DOUBLE_TAPPED) and not _already_air_dashed:
 				var direction = -1 if action == LEFT_DOUBLE_TAPPED else 1
 				set_axis_velocity(Vector2(direction * 400, -100))
@@ -103,6 +108,8 @@ func _resolve_state(action, body_state):
 			if not _both_pressed() and on_floor:
 				set_axis_velocity(Vector2(0, -600))
 				_state = LAUNCHING
+				_animation_player.play('launch')
+				_animation_player.queue('idle')
 				on_floor = false
 		LAUNCHING:
 			if not on_floor:
@@ -111,9 +118,11 @@ func _resolve_state(action, body_state):
 			if on_floor:
 				gravity_scale = GRAVITY_DEFAULT
 				_state = IDLE
+				_animation_player.play('idle')
 			elif not _both_pressed():
 				gravity_scale = GRAVITY_DEFAULT
 				_state = JUMPING
+				_animation_player.play('idle')
 		DASHING:
 			_dash_time += body_state.step
 			if _dash_time >= DASH_DURATION and not Input.is_action_pressed(_button_pressed_last):
@@ -145,7 +154,21 @@ func _both_pressed():
 
 func _is_on_floor(s):
 	for i in range(s.get_contact_count()):
-		var obj = s.get_contact_collider_object(i)
-		if s.get_contact_local_normal(i).y == -1:
+		if s.get_contact_local_normal(i).dot(Vector2(0, -1)) > 0.6:
 			return true
 	return false
+
+
+func _on_Game_over():
+	sleeping = true
+
+
+func _on_Game_win():
+	sleeping = true
+
+
+func _on_Game_started():
+	global_position.x = _start_pos.position.x
+	global_position.y = _start_pos.position.y
+	gravity_scale = GRAVITY_DEFAULT
+	sleeping = false

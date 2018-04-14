@@ -7,7 +7,6 @@ extents = Vector2( 10, 10 )
 
 [node name="Wall" type="StaticBody2D"]
 
-editor/display_folded = true
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -18,8 +17,8 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
-position = Vector2( 0, 513.513 )
-scale = Vector2( 1, 52.3513 )
+position = Vector2( 0, -972.96 )
+scale = Vector2( 1, 166.695 )
 shape = SubResource( 1 )
 
 

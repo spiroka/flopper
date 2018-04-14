@@ -37,4 +37,4 @@ func _process(delta):
 
 	if _tutorial_finished and Input.is_action_just_pressed('accept'):
 		_prompt.text = START_GAME
-		get_tree().change_scene('res://Game.tscn')
+		get_tree().change_scene('res://levels/Level1.tscn')

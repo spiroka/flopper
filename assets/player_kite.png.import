@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/floor_end.png-7bb7fcadc023765bfc5a2b3f3cd72adf.stex"
+path="res://.import/player_kite.png-086a8bc7e4c4d9e985d31e13b3f50c56.stex"
 
 [deps]
 
-source_file="res://assets/floor_end.png"
-source_md5="25b39151c32b2d25bcec782d3591add1"
+source_file="res://assets/player_kite.png"
+source_md5="d953c4f863ba0a1acebbb272a837d684"
 
-dest_files=[ "res://.import/floor_end.png-7bb7fcadc023765bfc5a2b3f3cd72adf.stex" ]
-dest_md5="75c4488cdcb75a956712419d6d6745be"
+dest_files=[ "res://.import/player_kite.png-086a8bc7e4c4d9e985d31e13b3f50c56.stex" ]
+dest_md5="efc756d59a5094772119701295c6938c"
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -28,5 +28,5 @@ process/premult_alpha=false
 process/HDR_as_SRGB=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

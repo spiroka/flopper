@@ -10,7 +10,7 @@ source_file="res://assets/floor.png"
 source_md5="23f8e13ec774005655848fd6047a7544"
 
 dest_files=[ "res://.import/floor.png-38406586736af2fe805d7b886727ee47.stex" ]
-dest_md5="fa9944f52f4f4280704ea5a7f5a8c422"
+dest_md5="db0abad66b3e5772eaae06d2cbcee086"
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -28,5 +28,5 @@ process/premult_alpha=false
 process/HDR_as_SRGB=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0
