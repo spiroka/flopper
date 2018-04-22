@@ -1,19 +1,20 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/bg.png" type="Texture" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/Tileset.tres" type="TileSet" id=3]
-[ext_resource path="res://Wall.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scripts/Hints.gd" type="Script" id=5]
-[ext_resource path="res://Theme.theme" type="Theme" id=6]
-[ext_resource path="res://assets/Roboto-Medium.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://scripts/Player.gd" type="Script" id=3]
+[ext_resource path="res://assets/Tileset.tres" type="TileSet" id=4]
+[ext_resource path="res://Wall.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/Hints.gd" type="Script" id=6]
+[ext_resource path="res://Theme.theme" type="Theme" id=7]
+[ext_resource path="res://assets/Roboto-Medium.ttf" type="DynamicFontData" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 
 size = 15
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 7 )
+font_data = ExtResource( 8 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="Theme" id=2]
@@ -29,7 +30,7 @@ Label/fonts/font = null
 Label/styles/normal = null
 _sections_unfolded = [ "Label" ]
 
-[node name="Tutorial" type="Node"]
+[node name="Tutorial" type="Node" index="0"]
 
 [node name="Background" type="Sprite" parent="." index="0"]
 
@@ -39,14 +40,19 @@ scale = Vector2( 1.60984, 1 )
 texture = ExtResource( 1 )
 _sections_unfolded = [ "Offset", "Transform" ]
 
-[node name="Player" parent="." index="1" instance=ExtResource( 2 )]
+[node name="Player" type="KinematicBody2D" parent="." index="1" instance=ExtResource( 2 )]
 
 position = Vector2( 300, 430 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 3 )
 
 [node name="TileMap" type="TileMap" parent="." index="2"]
 
 mode = 0
-tile_set = ExtResource( 3 )
+tile_set = ExtResource( 4 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -64,11 +70,11 @@ format = 1
 tile_data = PoolIntArray( 1245184, 0, 0, 1245185, 0, 0, 1245186, 0, 0, 1245187, 0, 0, 1245188, 0, 0, 1245189, 0, 0, 1245190, 0, 0, 1245191, 0, 0, 1245192, 0, 0, 1245193, 0, 0, 1245194, 0, 0, 1245195, 0, 0, 1245196, 0, 0, 1245197, 0, 0, 1245198, 0, 0, 1245199, 0, 0, 1245200, 0, 0, 1245201, 0, 0, 1245202, 0, 0 )
 _sections_unfolded = [ "Cell" ]
 
-[node name="Wall" parent="." index="3" instance=ExtResource( 4 )]
+[node name="Wall" parent="." index="3" instance=ExtResource( 5 )]
 
 position = Vector2( -10, 0 )
 
-[node name="Wall2" parent="." index="4" instance=ExtResource( 4 )]
+[node name="Wall2" parent="." index="4" instance=ExtResource( 5 )]
 
 position = Vector2( 610, -30 )
 
@@ -80,7 +86,7 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 
 [node name="Hint" type="Label" parent="Hints" index="0"]
 
@@ -98,7 +104,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-theme = ExtResource( 6 )
+theme = ExtResource( 7 )
 align = 1
 valign = 1
 autowrap = true
@@ -130,22 +136,5 @@ autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-
-[node name="Collision" type="Node" parent="." index="6"]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Collision" index="0"]
-
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collision/StaticBody2D" index="0"]
-
-build_mode = 0
-polygon = PoolVector2Array( 1.11818, 607.604, 600.851, 608.267, 601.515, 636.131, 0.454758, 636.131 )
 
 
