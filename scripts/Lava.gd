@@ -1,4 +1,4 @@
-extends Sprite
+extends Polygon2D
 
 var _speed = 0
 
