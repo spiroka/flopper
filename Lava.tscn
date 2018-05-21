@@ -12,8 +12,13 @@ render_mode unshaded;
 uniform sampler2D pattern : hint_albedo;
 
 void fragment() {
-	vec2 patternUV = (UV * vec2(textureSize(SCREEN_TEXTURE, 0))) / (vec2(textureSize(pattern, 0)) / TEXTURE_PIXEL_SIZE );
+	vec2 realUV = UV / SCREEN_PIXEL_SIZE.x;
+	vec2 patternUV = realUV / (vec2(textureSize(pattern, 0)) / TEXTURE_PIXEL_SIZE);
+	patternUV.y += fract(TIME);
 	COLOR = texture(pattern, fract(patternUV));
+	if (realUV.y < 8000.0 && COLOR.a > 0.0) {
+		COLOR.a *= realUV.y / 8000.0;
+	}
 }"
 _sections_unfolded = [ "Resource" ]
 
